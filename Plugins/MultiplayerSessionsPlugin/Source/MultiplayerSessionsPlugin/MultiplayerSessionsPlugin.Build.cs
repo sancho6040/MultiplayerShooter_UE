@@ -27,6 +27,8 @@ public class MultiplayerSessionsPlugin : ModuleRules
 			{
 				"Core",
 				// ... add other public dependencies that you statically link with here ...
+				"OnlineSubsystem",
+				"OnlineSubsystemSteam"
 			}
 			);
 			
