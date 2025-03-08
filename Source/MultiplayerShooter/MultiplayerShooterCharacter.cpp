@@ -70,15 +70,15 @@ AMultiplayerShooterCharacter::AMultiplayerShooterCharacter():
 	{
 		OnlineSessionInterface = OnlineSubsystem->GetSessionInterface();
 
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(
-				-1,
-				15.f,
-				FColor::Blue,
-				FString::Printf(TEXT("Found subsystem %s"), *OnlineSubsystem->GetSubsystemName().ToString())
-			);
-		}
+		// if (GEngine)
+		// {
+		// 	GEngine->AddOnScreenDebugMessage(
+		// 		-1,
+		// 		15.f,
+		// 		FColor::Cyan,
+		// 		FString::Printf(TEXT("Found subsystem %s"), *OnlineSubsystem->GetSubsystemName().ToString())
+		// 	);
+		// }
 	}
 }
 
@@ -110,8 +110,7 @@ void AMultiplayerShooterCharacter::CreateGameSession()
 	SessionSettings->bUsesPresence = true;
 	SessionSettings->bUseLobbiesIfAvailable = true;
 
-	SessionSettings->Set(FName("MatchType"), FString("FreeForAll"),
-	                     EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
+	SessionSettings->Set(FName("MatchType"), FString("FreeForAll"), EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 
 	const ULocalPlayer* LocalPlayer = GetWorld()->GetFirstLocalPlayerFromController();
 	OnlineSessionInterface->CreateSession(*LocalPlayer->GetPreferredUniqueNetId(), NAME_GameSession, *SessionSettings);
@@ -135,36 +134,36 @@ void AMultiplayerShooterCharacter::JoinGameSession()
 
 void AMultiplayerShooterCharacter::OnCreateSessionComplete(FName SessionName, bool bWasSuccessful)
 {
-	if (bWasSuccessful)
-	{
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(
-				-1,
-				15.f,
-				FColor::Blue,
-				FString::Printf(TEXT("Created session %s"), *SessionName.ToString())
-			);
-		}
-
-		UWorld* World = GetWorld();
-		if (World)
-		{
-			World->ServerTravel(FString("/Game/ThirdPerson/Maps/LobbyLevel?listen"));
-		}
-	}
-	else
-	{
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(
-				-1,
-				15.f,
-				FColor::Red,
-				FString(TEXT("Failed to create session"))
-			);
-		}
-	}
+	// if (bWasSuccessful)
+	// {
+	// 	if (GEngine)
+	// 	{
+	// 		GEngine->AddOnScreenDebugMessage(
+	// 			-1,
+	// 			15.f,
+	// 			FColor::Blue,
+	// 			FString::Printf(TEXT("Created session %s"), *SessionName.ToString())
+	// 		);
+	// 	}
+	//
+	// 	UWorld* World = GetWorld();
+	// 	if (World)
+	// 	{
+	// 		World->ServerTravel(FString("/Game/ThirdPerson/Maps/LobbyLevel?listen"));
+	// 	}
+	// }
+	// else
+	// {
+	// 	if (GEngine)
+	// 	{
+	// 		GEngine->AddOnScreenDebugMessage(
+	// 			-1,
+	// 			15.f,
+	// 			FColor::Red,
+	// 			FString(TEXT("Failed to create session"))
+	// 		);
+	// 	}
+	// }
 }
 
 void AMultiplayerShooterCharacter::OnFindSessionsComplete(bool bWassuccesful)
